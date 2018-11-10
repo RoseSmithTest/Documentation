@@ -1,4 +1,4 @@
-![image](https://github.com/RoseSmithTest/Documentation/blob/Images/2pintLogo.PNG)
+![image](https://github.com/RoseSmithTest/Documentation/Images/2pintLogo.PNG)
 
 # StifleR
    
