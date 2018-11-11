@@ -1,4 +1,9 @@
-
+<nav>
+    		<ul>
+        		<li><a href="/">Home</a></li>
+	        	<li><a href="/Docs">Documentation</a></li>
+        	</ul>
+</nav>
 
 <img src="images/2pintLogo.PNG" alt="hi" class="inline"/>
 
