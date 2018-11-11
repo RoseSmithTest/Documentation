@@ -1,3 +1,8 @@
+---
+layout: default
+title: 2PintTest Documentation
+---
+
 
 <img src="images/2pintLogo.PNG" alt="hi" class="inline"/>
 
