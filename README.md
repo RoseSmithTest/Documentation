@@ -1,4 +1,6 @@
-![](https://github.com/RoseSmithTest/Documentation/images/2pintLogo.PNG)
+
+
+<img src="images/2pintLogo.PNG" alt="hi" class="inline"/>
 
 # StifleR
    
