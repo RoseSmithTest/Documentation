@@ -1,4 +1,4 @@
-![](src="{{ site.baseurl }}/Images/2pintLogo.PNG)
+![](https://github.com/RoseSmithTest/Documentation/images/2pintLogo.PNG)
 
 # StifleR
    
