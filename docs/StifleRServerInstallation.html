@@ -1,0 +1,87 @@
+---
+layout: default
+title: 2Pint Documentation
+navigation_weight: 1
+---
+
+
+<div class="container">
+	<div class="columns spacing">
+ 
+  <ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/docs/docs.html">Documentation</a></li>
+  <li><a href="/docs/stiflerquickstartguide.html">StifleR Quickstart Guide</a></li>
+  <li>Example StifleR Rules Definition</li>
+</ul>
+<br><br><br><br>
+		<h1><strong>StifleR Server Installation</strong></h1><hr><br><br>
+		
+		<h2><strong>Manual Server Installation</strong></h2>
+<p>The easiest way is to install the server manually using the MSI. The server supports silent installation if needed, but typically you only need to run the installation on a single occasion so automation is not usually required.</p><br>
+
+			<h4>Pre-Requisites</h4>
+<p><ul>
+  <li>Requires .Net 4.6.2 to be installed on the server</li>
+  <li>If you want to use the same server to host the dashboards - install IIS as well.</li>
+  <li>If you wish to use a Custom App Pool in IIS – create that beforehand</li>
+  <li>Installation account must have Administrator rights(or run the MSI Installer elevated)</li>
+  <li>Ensure you have the License.cab available for the installer to access</li>
+  <li>Firewall – open ports 1414 (Client comms) and 9000 (Dashboard comms) Inbound for TCP traffic</li>
+  <li>Configure the StifleR Rules XML</li>
+			</ul></p><br>
+	
+
+
+<h4>Configure the StifleR Rules XML</h4>
+<p>The StifleR client will check through its queue of active downloads (both BITS and DO) and will prioritize them according to a locally held XML configuration file containing a set of rules that are configured centrally by the administrator and automatically distributed to clients.</p>
+
+<p>This file contains a simple rule set that defines the content download jobs and the priority that the administrator has assigned to each job type. See the StifleR rules definition guide for more details on how to create and configure the rules file. You can use the default rules included with this document for the purposes of testing. The clients will download the rules definition XML from a configured URL. This URL must be created, and for the purposes of testing we will assume that it is on the same server as StifleR itself.</p>
+
+	<p>Place the <b>stiflerulez.xml</b> in the following folder on the StifleR server:
+		<code>C:\ProgramData\2Pint Software\StifleR\Rules</code></p><br>
+
+	<h4>Create a Virtual Folder in IIS</h4>
+<p>From an elevated PowerShell prompt, execute the following command:<br>
+<code>New-WebVirtualDirectory -Site "Default Web Site" -Name StiflerRules - PhysicalPath “C:\ProgramData\2Pint Software\StifleR\Rules” </code></p>
+
+<p>This command will create a virtual folder which you will then use during the StifleR client install to configure the clients to automatically update their rules definition. The URL will be: <a href="http://yourserverfqdn/StiflerRules/stiflerulez.xml" style="color:blue">http://yourserverfqdn/StiflerRules/stiflerulez.xml</a></p>
+
+<p>Note: If you do not configure your own internal rules definition file, the clients will default to use on which is stored on the 2Pint website. So, if your clients do NOT have internet access, and you wish to use autorules updating then you should configure your own as above.</p>
+
+	<p>We are now ready to install the StifleR server component.</p><br>
+
+	<h4>Installation</h4>
+	<p>From an Elevated Command prompt launch <b>StifleR.Installer64.msi</b><br>
+		<img src="/images/quickstart/Quickstart1.PNG" alt="hi" class="inline"/><br>
+		<img src="/images/quickstart/Quickstart2.PNG" alt="hi" class="inline"/><br>
+		<img src="/images/quickstart/Quickstart3.PNG" alt="hi" class="inline"/></p>
+	<p>NOTE: If you select an old expired license file the installer will continue but the StifleR service may stop soon after starting.</p>
+		<p><img src="/images/quickstart/Quickstart4.PNG" alt="hi" class="inline"/><br>
+		<img src="/images/quickstart/Quickstart5.PNG" alt="hi" class="inline"/><br>
+		<img src="/images/quickstart/Quickstart6.PNG" alt="hi" class="inline"/></p><br><br>
+		
+<h2><strong>Server Installation - Post Installation Checks</strong></h2><br>
+<p><ul>
+  <li>Check that the service is running - not stopped or in any other state<br><img src="/images/quickstart/Quickstart7.PNG" alt="hi" class="inline"/></li><br>
+  <li>Navigate to the StifleR installation directory><br><img src="/images/quickstart/Quickstart8.PNG" alt="hi" class="inline"/></li><br>
+  <li>Check for the License.nfo files. If this is missing the service may not be licensed properly</li><br>
+  <li>Open up the configuration file (StifleR.Service.exe.config ) and check that the expected values are present. For a detailed description of each value see the Planning and Deployment Guide<br><img src="/images/quickstart/Quickstart9.PNG" alt="hi" class="inline"/></li><br>
+  <li>Open up the Windows Event Viewer MMC and check that StifleR Server events are being logged:<br><img src="/images/quickstart/Quickstart10.PNG" alt="hi" class="inline"/></li><br>
+  <li>Open up wbemtest.exe and connect to the Root\StifleR namespace<br><img src="/images/quickstart/Quickstart11.PNG" alt="hi" class="inline"/></li><br>
+  <li>Open up the StifleREngine class:<br><img src="/images/quickstart/Quickstart12.PNG" alt="hi" class="inline"/></li><br>
+	
+<li>Ensure you can see the WMI methods:<br><img src="/images/quickstart/Quickstart13.PNG" alt="hi" class="inline"/></li>	<br>
+	
+	<li>Hit the Instances button:<br><img src="/images/quickstart/Quickstart14.PNG" alt="hi" class="inline"/></li><br>
+	
+	<li>You should see the default Instance of the StifleREngine with the ID of 1:<br><img src="/images/quickstart/Quickstart15.PNG" alt="hi" class="inline"/></li><br>
+	
+	<li>Select this Instance. Scroll down in the properties window. Ensure that LicensedVersion isnot null and that the other values are similar to those below<br><img src="/images/quickstart/Quickstart16.PNG" alt="hi" class="inline"/></li><br>
+	
+	</ul></p>
+<p>Next: <a href="/docs/StifleRClientInstallation.html" style="color:blue" >StifleR-Client-Installation</a></p>
+
+		</div>
+	</div>
+</div>

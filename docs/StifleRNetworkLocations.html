@@ -1,0 +1,58 @@
+---
+layout: default
+title: 2Pint Documentation
+navigation_weight: 1
+---
+
+
+<div class="container">
+	<div class="columns spacing">
+		<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/docs/docs.html">Documentation</a></li>
+  <li><a href="/docs/stiflerquickstartguide.html">StifleR Quickstart Guide</a></li>
+  <li>StifleR Network Locations</li>
+</ul>
+<br><br><br><br>
+		<h1><strong>StifleR Network Locations</strong></h1><hr><br><br>
+<p>Once you install the StifleR client on some test systems, they will report to the StifleR server, which will start to populate the Location information based on the data sent back from the clients.</p>
+
+<p>Each ’newly discovered’ location/subnet has a set of default parameters, and for the purposes of testing, there are some configuration changes that should be made to enable optimal performance while testing.</p><br>
+
+    <h4>Configure Subnet Bandwidth</h4>
+		<p>On the StifleR server – run the following command from an elevated Command prompt</p>
+
+<p><code>wmic /namespace:\\root\stifler path Subnets.SubnetId="xxx.xxx.xxx.xxx" set TargetBandwidth=xxxx</code></p>
+
+<p>Where xxx.xxx.xxx.xxx is the subnet ID of your test location and Xxxx is the target bandwidth that you wish to allow for that subnet in Kilobits. So 1024 = 1 Mbit</p>
+
+<p>The Target Bandwidth is the network bandwidth usage limit that is defined for ALL StifleR clients at that location – so if the limit is set to 4Mbit/S – then the TOTAL bandwidth usage across all clients at that location wil not exceed that limit.</p><br>
+
+    <h4>Populate Subnet Summary Information</h4>
+<p>The summary information for a subnet provides an easy to read description of the subnet in the StifleR dashboards.
+	Run the following commands from an elevated Command prompt.</p>
+
+<p><code>wmic /namespace:\\root\stifler path Subnets.SubnetId="192.168.138.0" set Description=”TestLocation” wmic /namespace:\\root\stifler path Subnets.SubnetId="192.168.138.0" set Town=”SomeTown” wmic /namespace:\\root\stifler path Subnets.SubnetId="192.168.138.0" set Country=”USA”</code></p>
+
+<p>You can of course substitute the entries above with those of you own choosing.</p><br>
+
+    <h4>Configure Delivery Optimization</h4>
+<p>If you are using Windows 10 Delivery Optimization, StifleR can ensure that the correct Peer to Peer boundaries are respected. In order to configure this capability, run the following command from an elevated command prompt on the Stifler Server.</p>
+
+<p><code>wmic /namespace:\\root\stifler path Subnets.SubnetId=" xxx.xxx.xxx.xxx " set DODownloadMode=”2”</code></p>
+
+<p><code>wmic /namespace:\\root\stifler path Subnets.SubnetId=" xxx.xxx.xxx.xxx " set DOGroupID=”99999999- 9999-9999-999999999999”</code></p>
+
+<p>The DOGroupID must be a unique GUID. You can generate a GUID using PowerShell (New-GUID command) or you could copy the guid of the subnet itself and use that.</p>
+
+<p>Once the above parameters are set, the Delivery Optimization clients will only share content with other clients that have the same Group ID. The quickstart configuration is now complete and you are ready to start testing the functionality of StifleR.</p>
+
+<p>Open the main dashboard on the StifleR server – <a href="http://myserver/stiflerdashboard/#/all" style="color:blue">http://myserver/stiflerdashboard/#/all</a></p>
+
+<p>There you should now see the clients that were added in the previous steps. Drill down to your test subnet using the pop-out menu on the left side of the main dashboard to see more detailed info.</p>
+
+<p>Next: <a href="/docs/ExampleStifleRRulesDefinition.html" style="color:blue">Example-StifleR-Rules-Definition</a></p>
+
+		</div>
+	</div>
+</div>

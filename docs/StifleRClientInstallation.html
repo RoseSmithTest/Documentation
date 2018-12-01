@@ -1,0 +1,58 @@
+---
+layout: default
+title: 2Pint Documentation
+navigation_weight: 1
+---
+
+
+<div class="container">
+	<div class="columns spacing">
+		<ul class="breadcrumb">
+  <li><a href="/">Home</a></li>
+  <li><a href="/docs/docs.html">Documentation</a></li>
+  <li><a href="/docs/stiflerquickstartguide.html">StifleR Quickstart Guide</a></li>
+  <li>StifleR Client Installation</li>
+</ul><br><br><br><br>
+		<h1><strong>StifleR Client Installation</strong></h1><hr><br>
+
+			<h4>Pre-Requisites</h4>
+<p><ul>
+  <li>Windows 7 SP1 or later</li>
+    <ul>
+  <li>Supported are x86 or x64 versions of the operating systems</li>
+  <li>Professional, Enterprise or Ultimate versions</li>
+     </ul>
+  <li>Newer Educational SKU is also supported</li>
+  <li>Microsoft .Net 4.6.2 must be installed on the client</li>
+  </ul></p>
+	
+<p>The client is a .Net executable with some C++ helper DLLs. It will run on any operating system that is capable of running .Net 4.6 and BranchCache. This includes most operating systems from Windows 7SP1 and above with the exceptions of Home and other consumer versions of Windows.</p><br>
+
+	<h4>Client Modes</h4>
+<p><ul><li>For the purposes of testing we will be installing the StifleR Client in ’Service Mode’</li></ul></p><br>
+
+
+	<h4>Automated Installation</h4>
+	<p>You can install the StifleR Client interactively, via the MSI wizard based install. This is described in the StifleR Planning and Deployment guide. For the purposes of expediency and testing however, we will install the client using the MSI command line.</p>
+		<p>For example:</p>
+		
+		
+<p>To install the StifleR Client with default settings, in Windows Service Based Mode with a single StifleR server defined, and the URL for the StifleR rules XML download, run the following commandline from an elevated command prompt:</p><br>
+
+<code>msiexec /i StifleR.ClientApp.Installer64.msi INSTALLTYPE=2 STIFLERSERVERS=http://yourserverfqdn:1414 STIFLERULEZURL="http://yourserverfqdn/StiflerRules/StifleRulez.xml" UPDATERULESTIMERINSEC=”3600” /qn</code><br>
+
+<p>The full table showing the available MSI properties, switches, options and defaults can be found in the Planning and Deployment guide.</p><br>
+
+<h2><strong>Post Installation Checks</strong></h2><br>
+<h4>Service Driven Mode</h4>
+
+<ul>
+  <li>Check that the 2Pint Software StifleR Client Service is Running<br><img src="/images/quickstart/Quickstart17.PNG" alt="hi" class="inline"/></li><br>
+  <li>Check that the service is generating Event log entries to the StifleR event log</li><br>
+
+ 
+<p>Next: <a href="/docs/StifleRNetworkLocations.html" style="color:blue">StifleR-Network-Locations</a></p>
+
+		</div>
+	</div>
+</div>
