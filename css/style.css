@@ -191,3 +191,9 @@ ul.breadcrumb li a:hover {
     color: #01447e;
     text-decoration: underline;
 }
+
+.search {
+	width: 50%;
+	margin: 0 auto;
+	padding: 100px 0;
+}
